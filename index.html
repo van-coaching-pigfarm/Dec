@@ -1,15 +1,774 @@
+import profileImg from "figma:asset/d6b39bb31bb5ad2d03f52a88552d6693e505532d.png";
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Personal Profile Onepage</title>
-    </head>
+export default function App() {
+  return (
+    <div className="min-h-screen bg-white">
+      <div dangerouslySetInnerHTML={{ __html: htmlContent.replace('{{PROFILE_IMAGE}}', profileImg) }} />
+    </div>
+  );
+}
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+const htmlContent = `
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lê Hoàng Vân (Vanessa) - Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #0ea5e9;
+            --accent-color: #10b981;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: #ffffff;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 100%);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="1" fill="rgba(30,64,175,0.08)"/></svg>') repeat;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(30, 64, 175, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            border: 6px solid var(--primary-color);
+            box-shadow: 0 15px 50px rgba(30, 64, 175, 0.25);
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--primary-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            opacity: 1;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .hero .credentials {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 1;
+            line-height: 1.8;
+            font-weight: 500;
+            color: #0ea5e9;
+        }
+
+        .hero .statement {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            opacity: 1;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 500;
+            color: var(--text-dark);
+            border-top: 2px solid #e0e7ff;
+            padding-top: 1.5rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-dark);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: justify;
+            font-weight: 450;
+        }
+
+        /* Education & Experience */
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 3px solid var(--secondary-color);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            box-shadow: 0 0 0 4px white, 0 0 0 6px var(--secondary-color);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .timeline-item .period {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-item p {
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        /* Expertise */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .expertise-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .expertise-item::before {
+            content: '◆';
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Publications */
+        .publication {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary-color);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+        }
+
+        .publication h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .publication p {
+            margin-bottom: 0.7rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            font-weight: 450;
+        }
+
+        .publication strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .publication-status {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: #fef3c7;
+            color: #92400e;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Teaching Section */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .teaching-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .teaching-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .teaching-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .teaching-card p {
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 25px rgba(30, 64, 175, 0.5);
+            }
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.6);
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            animation: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero .credentials,
+            .hero .statement {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Trang chủ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#education">Học vấn</a></li>
+            <li><a href="#expertise">Chuyên môn</a></li>
+            <li><a href="#research">Nghiên cứu</a></li>
+            <li><a href="#teaching">Đào tạo</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <img src="{{PROFILE_IMAGE}}" alt="Lê Hoàng Vân" class="hero-image" />
+            <h1>Lê Hoàng Vân (Vanessa)</h1>
+            <p class="subtitle">Thạc sĩ Bác sĩ Thú y (M.V.M) | Nghiên cứu sinh Tiến sĩ Chăn nuôi</p>
+            <p class="credentials">Swine Farm Operation Manager | Trainer | PCC Coach (ICF)</p>
+            <p class="statement">
+                Chuyên gia quản lý và vận hành trang trại heo năng suất cao với hơn 15 năm kinh nghiệm thực tiễn tại Việt Nam và Đông Nam Á; 
+                kết hợp chuyên môn chăn nuôi – thú y – di truyền – dinh dưỡng với đào tạo và coaching theo chuẩn quốc tế, 
+                hướng đến phát triển chăn nuôi bền vững và nâng cao năng lực con người.
+            </p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Giới Thiệu Bản Thân</h2>
+        <div class="about-content">
+            <p>
+                Với hơn 15 năm kinh nghiệm trong lĩnh vực chăn nuôi heo công nghiệp, tôi tự hào đã đóng góp vào sự phát triển 
+                của ngành chăn nuôi không chỉ tại Việt Nam mà còn tại các quốc gia Đông Nam Á như Myanmar và Campuchia. 
+                Chuyên môn của tôi tập trung vào quản lý và vận hành các trang trại heo quy mô lớn, bao gồm trại GGP 
+                (Great Grand Parent), GP (Grand Parent), và PS (Parent Stock).
+            </p>
+            <p style="margin-top: 1.5rem;">
+                Trong suốt sự nghiệp, tôi đã có cơ hội xây dựng và triển khai các qui trình vận hành chuẩn (SOP), 
+                hệ thống an toàn sinh học (biosecurity), và các chương trình phúc lợi động vật (animal welfare). 
+                Đặc biệt, tôi chuyên sâu trong quản lý di truyền giống, phân tích dữ liệu năng suất và đưa ra các 
+                quyết định quản lý dựa trên số liệu để cải thiện hiệu quả sản xuất.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                Bên cạnh vai trò quản lý vận hành, tôi còn đảm nhiệm vai trò đào tạo và huấn luyện đội ngũ k�� thuật, 
+                quản lý và lãnh đạo tuyến trại. Với chứng chỉ PCC (Professional Certified Coach) theo chuẩn ICF, 
+                tôi áp dụng phương pháp coaching hiệu suất cao để phát triển năng lực lãnh đạo và nâng cao hiệu quả làm việc.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                Định hướng nghiên cứu của tôi hướng đến chăn nuôi bền vững, giảm phát thải khí nhà kính, 
+                và ứng dụng công nghệ trong quản lý trang trại hiện đại. Tôi tin tưởng rằng sự kết hợp giữa 
+                khoa học, thực tiễn và phát triển con người sẽ tạo nên giá trị bền vững cho ngành chăn nuôi Việt Nam.
+            </p>
+        </div>
+    </section>
+
+    <!-- Education & Experience -->
+    <section id="education">
+        <h2 class="section-title">Học Vấn & Kinh Nghiệm Nghề Nghiệp</h2>
+        
+        <h3 style="font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem; text-align: center; font-weight: 600;">
+            Học Vấn
+        </h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Nghiên cứu sinh Tiến sĩ Chăn nuôi</h3>
+                <span class="period">2025 – 2028</span>
+                <p>Trường Đại học Cần Thơ</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Thạc sĩ Thú y</h3>
+                <span class="period">2008 – 2010</span>
+                <p>Trường Đại học Cần Thơ</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Kỹ sư Chăn nuôi – Thú y</h3>
+                <span class="period">2003 – 2008</span>
+                <p>Trường Đại học Cần Thơ</p>
+            </div>
+        </div>
+
+        <h3 style="font-size: 1.8rem; color: var(--primary-color); margin: 4rem 0 2rem; text-align: center; font-weight: 600;">
+            Kinh Nghiệm Nghề Nghiệp
+        </h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Quản lý vận hành trang trại heo</h3>
+                <span class="period">2022 – Hiện tại</span>
+                <p>De Heus Việt Nam</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Quản lý sản xuất heo</h3>
+                <span class="period">2020 – 2022</span>
+                <p>BAF Việt Nam & Myanmar</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Quản lý trại GP/GGP</h3>
+                <span class="period">2019 – 2020</span>
+                <p>De Heus Myanmar, Việt Thắng</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Quản lý kỹ thuật & Marketing</h3>
+                <span class="period">2013 – 2019</span>
+                <p>Công ty thức ăn chăn nuôi</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Quản lý cửa hàng thuốc thú y và thức ăn chăn nuôi Hoàng Vân</h3>
+                <span class="period">2011 – 2013</span>
+                <p>Vĩnh Long</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Bác sĩ thú y</h3>
+                <span class="period">2008 – 2011</span>
+                <p>Phòng mạch thú y Welfare – TP Cần Thơ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise -->
+    <section id="expertise">
+        <h2 class="section-title">Lĩnh Vực Chuyên Môn & Hướng Nghiên Cứu</h2>
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                Quản lý chăn nuôi và trang trại heo năng suất cao
+            </div>
+            <div class="expertise-item">
+                Di truyền và chọn giống vật nuôi
+            </div>
+            <div class="expertise-item">
+                Dinh dưỡng và sinh lý vật nuôi
+            </div>
+            <div class="expertise-item">
+                Sức khỏe đàn, an toàn sinh học và phúc lợi động vật
+            </div>
+            <div class="expertise-item">
+                Phát triển chăn nuôi bền vững và giảm phát thải khí nhà kính
+            </div>
+            <div class="expertise-item">
+                Phân tích dữ liệu năng suất và ra quyết định quản lý
+            </div>
+            <div class="expertise-item">
+                Đào tạo vận hành trang trại heo công nghiệp
+            </div>
+            <div class="expertise-item">
+                Huấn luyện và coaching hiệu suất cao theo chuẩn ICF
+            </div>
+        </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+        <h2 class="section-title">Công Trình Nghiên Cứu & Học Thuật</h2>
+        
+        <div class="publication">
+            <h3>Đề tài 1 – Trường Đại học Tây Nguyên</h3>
+            <p>
+                <strong>Tên đề tài:</strong> Đánh giá năng suất sinh sản của lợn nái ông bà Large White và lợn nái bố mẹ TN70; 
+                sức sản xuất của lợn đực lai hai máu; và chất lượng tinh thương phẩm của lợn TN Duroc và TN Tempo nuôi tại tỉnh Đắk Lắk.
+            </p>
+            <p>
+                <strong>Vai trò:</strong> Thành viên đề tài
+            </p>
+            <p>
+                <strong>Đơn vị phối hợp:</strong> Trường Đại học Tây Nguyên – Doanh nghiệp giống heo
+            </p>
+        </div>
+
+        <div class="publication">
+            <h3>Đề tài 2 – Trường Đại học Cần Thơ</h3>
+            <p>
+                <strong>Tên đề tài:</strong> Ảnh hưởng của dầu cám gạo và tảo đỏ lên sinh khí methane, 
+                chuyển hóa acid béo và chất lượng thịt của bò.
+            </p>
+            <p>
+                <strong>Vai trò:</strong> Nghiên cứu sinh, chủ trì thực hiện các thí nghiệm của luận án
+            </p>
+            <p>
+                <strong>Chương trình hỗ trợ:</strong> VLIRUOS – Giảm phát thải methane trong chăn nuôi
+            </p>
+        </div>
+
+        <div class="publication">
+            <h3>Đề tài 3 – Trường Đại học Cần Thơ</h3>
+            <p>
+                <strong>Tác giả:</strong> Lâm Phước Thành, Võ Thị Phượng Tiên, Lê Hoàng Vân, Trần Thị Thúy Hằng (2025)
+            </p>
+            <p>
+                <strong>Tên đề tài:</strong> Ảnh hưởng của lá mít ủ chua thay thế cỏ voi ủ chua lên tỷ lệ tiêu hóa 
+                và sinh khí methane in vitro sử dụng dịch dạ cỏ dê sữa.
+            </p>
+            <p>
+                <strong>Công bố:</strong> Kỷ yếu Hội nghị Khoa học Chăn nuôi và Thú y Toàn quốc lần VI – Thái Nguyên (07–08/11/2025)
+            </p>
+            <span class="publication-status">Đang phản biện</span>
+        </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+        <h2 class="section-title">Giảng Dạy – Đào Tạo – Coaching</h2>
+        <div class="teaching-grid">
+            <div class="teaching-card">
+                <h3>🎓</h3>
+                <p>Đào tạo quản lý và kỹ thuật chăn nuôi heo</p>
+            </div>
+            <div class="teaching-card">
+                <h3>👥</h3>
+                <p>Huấn luyện đội ngũ quản lý trại heo và khai vấn giúp phát triển năng lực</p>
+            </div>
+            <div class="teaching-card">
+                <h3>🏆</h3>
+                <p>Coaching hiệu suất cao theo chuẩn ICF – PCC level</p>
+            </div>
+            <div class="teaching-card">
+                <h3>📋</h3>
+                <p>Thiết kế chương trình đào tạo nội bộ và SOP kỹ thuật</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title">Liên Hệ</h2>
+        <div class="contact-container">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-dark);">
+                Tôi luôn sẵn sàng kết nối, hợp tác và chia sẻ kinh nghiệm trong lĩnh vực chăn nuôi, đào tạo và nghiên cứu.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:lehoangvan2060@gmail.com" class="contact-btn">
+                    📧 lehoangvan2060@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/vanessa-lê-hoàng-vân-m-v-m-7b53b8120" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                    💼 LinkedIn
+                </a>
+                <a href="#" class="contact-btn">
+                    🎓 Google Scholar
+                </a>
+                <a href="#" class="contact-btn">
+                    🔬 ORCID
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Lê Hoàng Vân (Vanessa). All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+            Swine Farm Operation Manager | Trainer | PCC Coach (ICF)
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to nav on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+`;
